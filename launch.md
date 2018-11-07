@@ -46,19 +46,11 @@ Following the PostgreSQL docs and several guides I found online, I installed Pos
 sudo apt-get install postgresql postgresql-contrib
 ``` 
 
-## Step 3. Meet the postgres user on your computer and set its password
+## Step 3. Meet the postgres user on your computer 
 
 As part of the installation, PostgreSQL makes itself at home on your computer and creates itself a user. By default, this user is called `postgres`.
 
 When you want to do something in Postgres, you'll probably want to switch to that user on your computer, since `postgres` owns all the files that the install script created.
-
-The problem is if you switch to the `postgres` user right now, you won't know its password when you want to do stuff or switch back to your user. So, before you switch for the first time, you should set `postgres`'s password. Here's the script:
-
-```bash
-sudo apt-get install postgresql postgresql-contrib
-```
-
-## Step 4. Switch to the postgres user so you can do stuff in postgres
 
 The `postgres` user is the one in charge of everything Postgres on your machine. So, switch to that user:
 
@@ -66,7 +58,7 @@ The `postgres` user is the one in charge of everything Postgres on your machine.
 sudo -i -u postgres
 ```
 
-## Step 5. If you're lucky, start psql
+## Step 4. If you're lucky, start psql
 
 So, most tutorials on the internet make it seem like you're home free at this point. They say, just log in as the `postgres` user and then type:
 
@@ -78,7 +70,7 @@ And you'll get an interactive screen and a prompt for issuing SQL commands to yo
 
 That's not what happened for me.
 
-### Troubleshooting 5.1.
+### Troubleshooting 4.1.
 
 I got an error when I typed `psql` for the first time:
 
@@ -106,7 +98,7 @@ In our case, we want to start a version 11 server and name it main, so:
 pg_ctlcluster 11 main start
 ```
 
-## Step 6. Test it out
+## Step 5. Test it out
 
 If all goes well (and believe me, I know how much room there is for it to go poorly), you'll have started a PostgreSQL server locally on your Ubuntu machine that you can then access using the `postgres` username by issuing the command `psql`.
 

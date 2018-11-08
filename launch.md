@@ -98,6 +98,35 @@ In our case, we want to start a version 11 server and name it main, so:
 pg_ctlcluster 11 main start
 ```
 
+### Troubleshooting 4.2
+
+Another issue I encountered when starting up my server is file permissions problems for the postgres Linux user. Specifically, `postgres` needed to create a directory in my `/var/run` folder. That folder was owned and restricted to the `root` user.
+
+The easiest way to fix this, and the way I used, was to sudo in as root:
+
+```bash
+sudo -i
+```
+
+And update the permissions for the specific directory that `postgres` needed access to.
+
+There are two ways to do this:
+
+1. You can change the overall permissions for that directory (logged in as root):
+
+```bash
+chmod -R 775 [<--or another permission scheme] /var/run/postgresql
+```
+
+2. Change the owner of the `postgresql` file to `postgres`:
+
+```bash
+chown -R postgres:postgres /var/run/postgresql
+```
+
+Option 2 is the safer one since it only gives access to the postgres user.
+
+
 ## Step 5. Test it out
 
 If all goes well (and believe me, I know how much room there is for it to go poorly), you'll have started a PostgreSQL server locally on your Ubuntu machine that you can then access using the `postgres` username by issuing the command `psql`.
